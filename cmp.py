@@ -26,6 +26,7 @@ def cmp(i,j):
 #step function
 highlimit = 2 # upper limit of saturation points
 lowlimit = 0 # lower limit of saturation points
+gain = 1/(2*(highlimit)**2) # gradient of the line intersecting the two saturation points
 
 #y = cmp(x,lowlimit)
 
@@ -40,5 +41,22 @@ plt.grid(True)
 plt.show()
 
 #RAMP function
+def ramp_func(x):
+    if x >= highlimit:
+        y=1
+    elif lowlimit <= x  and lowlimit <highlimit:
+        y = 1 + gain*(x-highlimit)
+    else:
+        y = 0
+    return y
+
+def ramp_func2(x):
+    
+ramp_func = np.vectorize(ramp_func)
+x = np.arange(-3.0,3.0,0.1)
+y_uni = ramp_func(x)
+plt.plot(x,y_uni)
+plt.grid(True)
+plt.show()
 
 
