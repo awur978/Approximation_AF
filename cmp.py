@@ -5,6 +5,11 @@
 #here plenty activation functions were implemented using this method, step,ramp and sigmoid
 # only interested in sigmoid and tansig
 
+#Note the lowlimit and highlimit for each function type is different
+#Step low=0, high = 2 or anything
+#ramp
+#sigmoid low = -4.04, high = 4.04
+
 '''
 KEY
 t_h = CMP(highlimit,x)
@@ -24,8 +29,8 @@ def cmp(i,j):
 
 
 #step function
-highlimit = 2 # upper limit of saturation points
-lowlimit = 0 # lower limit of saturation points
+highlimit = 4.04 # upper limit of saturation points
+lowlimit = -4.04 # lower limit of saturation points
 gain = 1/(2*(highlimit)**2) # gradient of the line intersecting the two saturation points
 
 #y = cmp(x,lowlimit)
@@ -76,7 +81,7 @@ def sig1(x):
     return y
     
 sig1 = np.vectorize(sig1)
-x = np.arange(-3.0,3.0,0.1)
+x = np.arange(-6.0,6.0,0.1)
 y_uni = sig1(x)
 plt.plot(x,y_uni)
 plt.grid(True)
