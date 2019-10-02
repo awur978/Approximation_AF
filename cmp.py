@@ -51,12 +51,34 @@ def ramp_func(x):
     return y
 
 def ramp_func2(x):
+    t_h = cmp(highlimit,x)
+    t_l = cmp(x,lowlimit)
+    y = t_l + t_h*t_l*gain*(x-highlimit)
+    return y
     
-ramp_func = np.vectorize(ramp_func)
+ramp_func2 = np.vectorize(ramp_func2)
 x = np.arange(-3.0,3.0,0.1)
-y_uni = ramp_func(x)
+y_uni = ramp_func2(x)
 plt.plot(x,y_uni)
 plt.grid(True)
 plt.show()
 
+
+#SIGMOID
+
+def sig1(x):
+    t_h = cmp(highlimit,x)
+    t_l = cmp(x,lowlimit)
+    t_pn = cmp(x,0)
+    
+    y = t_pn - ((2*t_pn)-1) * (t_h*t_l*gain*(((2*t_pn-1)*highlimit)-x)**2)
+    
+    return y
+    
+sig1 = np.vectorize(sig1)
+x = np.arange(-3.0,3.0,0.1)
+y_uni = sig1(x)
+plt.plot(x,y_uni)
+plt.grid(True)
+plt.show()
 
