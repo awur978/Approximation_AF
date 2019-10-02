@@ -87,3 +87,22 @@ plt.plot(x,y_uni)
 plt.grid(True)
 plt.show()
 
+#TANSIG/TANH
+
+def tanh1(x):
+    t_h = cmp(highlimit,x)
+    t_l = cmp(x,lowlimit)
+    t_pn = cmp(x,0)
+    
+    t = t_pn - ((2*t_pn)-1) * (t_h*t_l*gain*(((2*t_pn-1)*highlimit)-x)**2)
+    y = (2*t) -1
+    
+    return y
+    
+tanh1 = np.vectorize(tanh1)
+x = np.arange(-6.0,6.0,0.1)
+y_bi = tanh1(x)
+plt.plot(x,y_bi)
+plt.grid(True)
+plt.show()
+
